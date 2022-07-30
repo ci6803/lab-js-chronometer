@@ -22,9 +22,13 @@ class Chronometer {
     return second;
   }
 
+  getCentisecond() {
+    let centisecond = (this.currentTime * 100) % 100;
+  }
+
   computeTwoDigitNumber(value) {
     value = `${value}`;
-    if (value.length === 1) return "0" + `${value}`;
+    if (value.length === 1) return `0${value}`;
     return `${value}`;
   }
 
@@ -39,6 +43,7 @@ class Chronometer {
   split() {
     let splitSecond = this.computeTwoDigitNumber(this.getSeconds());
     let splitMinute = this.computeTwoDigitNumber(this.getMinutes());
-    return `${splitMinute}:${splitSecond}`;
+    let splitCentisecond = this.computeTwoDigitNumber(this.getCentisecond());
+    return `${splitMinute}:${splitSecond} ${splitCentisecond}`;
   }
 }
